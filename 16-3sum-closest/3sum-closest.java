@@ -2,11 +2,6 @@ class Solution {
     public int threeSumClosest(int[] nums, int target) {
         Arrays.sort(nums);
         int len = nums.length;
-
-        
-        
-
-
         int prevDif= Integer.MAX_VALUE;
         int ans = 0;
         for(int i = 0;i< len;i++ ){
