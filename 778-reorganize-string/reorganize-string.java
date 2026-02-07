@@ -1,51 +1,44 @@
 class Solution {
     public String reorganizeString(String s) {
-        // Step 1: Calculate the frequency of characters in the string
-        Map<Character, Integer> charCountMap = new HashMap<>();
-        for (char c : s.toCharArray()) {
-            charCountMap.put(c, charCountMap.getOrDefault(c, 0) + 1);
+                Map<Character, Integer> freq = new HashMap<>();
+        for (char ch : s.toCharArray()) {
+            freq.put(ch, freq.getOrDefault(ch, 0) + 1);
         }
 
-        // Step 2: Create a max heap (priority queue) to store characters with
-        // their frequencies
-        PriorityQueue<Map.Entry<Character, Integer>> maxHeap = new PriorityQueue<>(
-                (a, b) -> b.getValue() - a.getValue() // Sorting in descending order of frequency
-        );
+        // sort by cnt
+        List<Map.Entry<Character, Integer>> list = new ArrayList<>(freq.entrySet());
+        list.sort((a,b) -> b.getValue() - a.getValue());
 
-        // Step 3: Add all characters with their frequencies to the heap
-        maxHeap.addAll(charCountMap.entrySet());
+        // create buckets of str
+        int maxFreq = list.get(0).getValue();
+        StringBuilder[] buckets = new StringBuilder[maxFreq];
 
-        // Step 4: Initialize variables
-        StringBuilder result = new StringBuilder();
-        Map.Entry<Character, Integer> previous = null; // Store the last used
-        // character
-
-        // Step 5: Reorganize the string
-        while (!maxHeap.isEmpty() || previous != null) {
-            // If no characters can be used and there's still a 'previous' char
-            if (previous != null && maxHeap.isEmpty()) {
-                return ""; // Not possible to reorganize
+        // iterate over ch and cnts and fill buckets in circular fashion
+        int k = 0; // bucket ind
+        for (int i = 0; i < freq.size(); i++) {
+            for (int j = 0; j < list.get(i).getValue(); j++) {
+                int id = k % maxFreq;
+                if (buckets[id] == null) buckets[id] = new StringBuilder();
+                buckets[id].append(list.get(i).getKey());
+                k++;
             }
-
-            // Step 6: Get the character with the highest frequency
-            Map.Entry<Character, Integer> current = maxHeap.poll();
-            result.append(current.getKey());
-
-            // Decrease frequency since we used this character
-            current.setValue(current.getValue() - 1);
-
-            // Push the previous character back into the heap if it still has
-
-            // occurrences left
-            if (previous != null && previous.getValue() > 0) {
-                maxHeap.offer(previous);
-            }
-
-            // Set current character as the new 'previous'
-            previous = current.getValue() > 0 ? current : null;
         }
 
-        return result.toString();
-    
+        // merge
+        StringBuilder res = new StringBuilder();
+        for (StringBuilder sb : buckets) {
+            res.append(sb);
+        }
+
+        String resStr = res.toString();
+
+        // validate
+
+        for (int i = 0; i < resStr.length() - 1; i++) {
+            if (resStr.charAt(i) == resStr.charAt(i+1)) return "";
+        }
+
+        return resStr;
+
     }
 }
