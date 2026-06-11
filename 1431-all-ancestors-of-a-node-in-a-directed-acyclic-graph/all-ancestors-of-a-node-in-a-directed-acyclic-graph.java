@@ -1,31 +1,34 @@
 class Solution {
-    public List<List<Integer>> getAncestors(int n, int[][] edges) {
-                List<List<Integer>> res=new ArrayList<>();
-        for(int i=0; i<n; i++){
-            res.add(new ArrayList<>());
-        } 
-
-        ArrayList<Integer>[] graph=new ArrayList[n];
-        for(int i=0; i<n; i++){
-            graph[i]=new ArrayList<>();
-        }   
-        for(int[] edge: edges){
-            graph[edge[0]].add(edge[1]);
+        boolean[] isVis;
+    void dfs(int a, int i, List<List<Integer>> adj){        
+        if(i!=a){
+            ans.get(a).add(i);
+            isVis[i]=true;
         }
-        for(int i=0; i<n; i++){
-            dfs(graph,i,i,res,new boolean[n]);
-        }
-        return res;
-    }
-    public void dfs( ArrayList<Integer>[] graph, int parent, int curr, List<List<Integer>> res,boolean[] visit){
-        visit[curr]=true;
-        for(int i=0; i< graph[curr].size(); i++){
-            int dest=graph[curr].get(i);
-            if(!visit[dest]){
-                res.get(dest).add(parent);
-                dfs(graph,parent,dest,res,visit);
+        for(int node:adj.get(i)){
+            if(!isVis[node]){
+                dfs(a,node,adj);
             }
         }
-
+    }
+    List<List<Integer>> ans=new ArrayList<>();
+    public List<List<Integer>> getAncestors(int n, int[][] edges) {
+        List<List<Integer>> adj=new ArrayList<>();
+        for(int i=0;i<n;i++){
+            adj.add(new ArrayList<Integer>());
+            ans.add(new ArrayList<Integer>());
+        }
+        for(int i=0;i<edges.length;i++){
+            adj.get(edges[i][1]).add(edges[i][0]);
+            
+        }
+        for(int i=0;i<n;i++){
+            isVis=new boolean[n];
+            dfs(i,i,adj);
+        }
+        for(int i=0;i<ans.size();i++){            
+            Collections.sort(ans.get(i));
+        }
+        return ans;
     }
 }
