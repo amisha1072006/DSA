@@ -10,17 +10,17 @@
  */
 class Solution {
     public ListNode reverseList(ListNode head) {
-        ListNode curr=head;
-        ListNode nxt=null;
-        ListNode prv=null;
-        while(curr!=null)
-        {
-            nxt=curr.next;
-            curr.next=prv;
-            prv=curr;
-            curr=nxt;
+        ListNode prev = null;
+        ListNode curr = head;
+        ListNode next;
+        while(curr != null){
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
         }
-        return prv;
-    
+        head = prev;
+        return head;
     }
+    
 }
