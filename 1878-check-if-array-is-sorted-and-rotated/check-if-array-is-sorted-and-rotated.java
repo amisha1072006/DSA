@@ -30,21 +30,37 @@ class Solution {
 
         // Better Approach
         // TC = O(n^2), SC = O(n)
-       int n = nums.length;
-       int arr[] = Arrays.copyOf(nums, n);
-       Arrays.sort(arr);
-       for(int r=0; r<n; r++){
-        boolean isSorted = true;
-        for(int i=0; i<n; i++){
-          if(arr[i] != nums[(i+r)%n]){
-            isSorted = false;
-            break;
-          }
+    //    int n = nums.length;
+    //    int arr[] = Arrays.copyOf(nums, n);
+    //    Arrays.sort(arr);
+    //    for(int r=0; r<n; r++){
+    //     boolean isSorted = true;
+    //     for(int i=0; i<n; i++){
+    //       if(arr[i] != nums[(i+r)%n]){
+    //         isSorted = false;
+    //         break;
+    //       }
+    //     }
+    //     if(isSorted){
+    //         return true;
+    //     }
+    //    }
+    //     return false;
+
+    // OPTIMISE APPROACH
+    //TC = O(n), SC = O(n)
+
+    int n = nums.length;
+    int peak = 0;
+    for(int i = 0; i < n; i++){
+        if(nums[i] > nums[(i+1)%n]){
+           peak++;
         }
-        if(isSorted){
-            return true;
-        }
-       }
-        return false;
+    }
+    if(peak <= 1){
+        return true;
+    } else{
+    return false;
+    }
     }
 }
