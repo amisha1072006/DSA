@@ -6,7 +6,7 @@ class Solution {
     ArrayList<Integer> list = new ArrayList<>();
     for(int i = 0; i < n; i++){
         boolean duplicate = false;
-       for(int j = 0; j < i; j++){
+       for(int j = i+1; j < n; j++){
            if(nums[i] == nums[j]){
             duplicate = true;
             break;
