@@ -42,31 +42,28 @@ class Solution {
 
    //BETTER APPROACH
    //TC = O(n), SC = O(n)
-   int n = nums.length;
-   ArrayList<Integer> list = new ArrayList<>();
-   for(int i = 0; i<n; i++){
-    if(!list.contains(nums[i])){
-        list.add(nums[i]);
-    }
-   }
-   for(int i = 0; i< list.size(); i++){
-    nums[i] = list.get(i);
-   }
-   return list.size();
-
-    //    int i = 0;
-    //     int j = 0;
-    //     int k = 0;
-
-    //     while (j < nums.length) {
-    //         if (nums[i] == nums[j]) {
-    //             j++;
-    //         } else {
-    //             i++;
-    //             nums[i] = nums[j];
-    //             k++;
-    //         }
-    //     }
-    //     return k + 1; 
+//    int n = nums.length;
+//    ArrayList<Integer> list = new ArrayList<>();
+//    for(int i = 0; i<n; i++){
+//     if(!list.contains(nums[i])){
+//         list.add(nums[i]);
+//     }
+//    }
+//    for(int i = 0; i< list.size(); i++){
+//     nums[i] = list.get(i);
+//    }
+//    return list.size();
+ 
+    // OPTIMIZED APPROACH
+    // TC = O(n), SC= O(1)
+       int n = nums.length;
+       int k =1;
+       for(int i =1; i<n; i++){
+        if(nums[i] != nums[i-1]){
+            nums[k] = nums[i];
+            k++;
+        }
+       }
+       return k;
     }
 }
