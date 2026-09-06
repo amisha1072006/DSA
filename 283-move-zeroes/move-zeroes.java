@@ -1,6 +1,7 @@
 // class Solution {
 //     public void moveZeroes(int[] nums) {
-       // Brute Force Approach
+      // Brute Force Approach
+       //TC = O(n), SC = O(n)
     //    int n = nums.length;
     //    int temp[] = new int[n];
     //    int j =0;
@@ -18,6 +19,7 @@
     //     }
 
     // optimize approach
+    // TC = O(n), SC = O(1)
     class Solution {
     public void moveZeroes(int[] nums) {
      int j = -1;
