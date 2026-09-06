@@ -1,5 +1,5 @@
-class Solution {
-    public void moveZeroes(int[] nums) {
+// class Solution {
+//     public void moveZeroes(int[] nums) {
        // Brute Force Approach
     //    int n = nums.length;
     //    int temp[] = new int[n];
@@ -17,22 +17,16 @@ class Solution {
     //         nums[i] = temp[i];
     //     }
 
-    // optmize approach
-
+    // optimize approach
+    class Solution {
+    public void moveZeroes(int[] nums) {
      int j = -1;
      for(int i = 0; i<nums.length; i++){
-        if(nums[i] ==0){
+        if(nums[i] ==0 && j == -1){
             j =i;
-            break;
         }
-     }
-     if(j == -1){
-        return;
-     }
-     
-     for(int k = j+1; k<nums.length; k++){
-        if(nums[k] != 0){
-            swap(nums, k, j);
+        if(nums[i] != 0 && j != -1){
+            swap(nums, i, j);
             j++;
         }
      }
@@ -42,4 +36,4 @@ class Solution {
         nums[i] = nums[j];
         nums[j] = temp;
      }
-}
+   }
