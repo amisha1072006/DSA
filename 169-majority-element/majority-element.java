@@ -19,34 +19,65 @@ class Solution {
 
      //OR
      //if(count > n/2){
-     // ans = nums[i];
+     // return nums[i];
      //}
 
     //    } 
     //    return ans;
 
-    // OPTMIZED APPROACH
+    // BETTER APPROACH
     //TC = O(nlogn), SC = O(1)
 
-    Arrays.sort(nums);
-    int n = nums.length;
-    int count = 1;
-    int maxCount = 1, ans = nums[0];
-        if(n == 1){
-          return nums[0];
-        }
-    for(int i = 0; i<nums.length-1; i++){
+//     Arrays.sort(nums);
+//     int n = nums.length;
+//     int count = 1;
+//     int maxCount = 1, ans = nums[0];
+//         if(n == 1){
+//           return nums[0];
+//         }
+//     for(int i = 0; i<nums.length-1; i++){
 
-         if(nums[i] == nums[i+1]){
-            count++;
-         }
-         else {
-            count = 1;
-         }
-         if(count > n/2){
-            return nums[i+1];
-         }
-      }
-    return -1;
+//          if(nums[i] == nums[i+1]){
+//             count++;
+//          }
+//          else {
+//             count = 1;
+//          }
+//          if(count > n/2){
+//             return nums[i+1];
+//          }
+//       }
+//     return -1;
+// }
+// }
+
+//OPTIMIZED APPROACH
+// TC = O(n), SC = O(1)
+
+int n = nums.length;
+int count = 0;
+int el = 0;
+for(int i = 0; i<n; i++){
+  if(count == 0){
+    count = 1;
+    el = nums[i];
+  }
+  else if(nums[i] == el){
+    count++;
+  }
+  else{
+    count--;
+  }
 }
+  int count1 = 0;
+  for(int i = 0; i<n; i++){
+    if(nums[i] == el){
+        count1++;
+    }
+  }
+  if(count1 > n/2){
+    return el;
+  }
+  return -1;
 }
+    }
