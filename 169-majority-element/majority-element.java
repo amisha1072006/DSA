@@ -21,17 +21,26 @@ class Solution {
     // OPTMIZED APPROACH
 
     Arrays.sort(nums);
-    HashSet<Integer> processed = new HashSet<>();
+   // HashSet<Integer> processed = new HashSet<>();
     int n = nums.length;
-    for(int i = 0; i<nums.length; i++){
-        int currentElement = nums[i];
-        if(!processed.contains(currentElement)){
-            if(i + n / 2 < n && nums[i+ n / 2] == currentElement){
-                return currentElement;
-            }
-            processed.add(currentElement);
-        } 
-    }
-    return -1;
+    int count = 1;
+    int maxCount = 1, ans = nums[0];
+            if(n == 1){
+          return nums[0];
+        }
+    for(int i = 0; i<nums.length-1; i++){
+
+         if(nums[i] == nums[i+1]){
+            count++;
+         }
+         else {
+            count = 1;
+         }
+         if(count > maxCount){
+            maxCount = count;
+            ans = nums[i+1];
+         }
+      }
+    return ans;
 }
 }
