@@ -12,10 +12,18 @@ class Solution {
 
         // Step 2: Reverse each row
         for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n / 2; j++) {
-                int temp = transpose[i][j];
-                transpose[i][j] = transpose[i][n - j - 1];
-                transpose[i][n - j - 1] = temp;
+            // for (int j = 0; j < n / 2; j++) {
+            //     int temp = transpose[i][j];
+            //     transpose[i][j] = transpose[i][n - j - 1];
+            //     transpose[i][n - j - 1] = temp;
+            // }
+            int j = 0 , k = n-1;
+            while(j<k){
+               int temp = transpose[i][j];
+               transpose[i][j] = transpose[i][k];
+               transpose[i][k] = temp;
+               j++;
+               k--;
             }
         }
             for (int i = 0; i < n; i++) {
