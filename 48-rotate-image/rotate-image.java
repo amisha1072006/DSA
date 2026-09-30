@@ -26,6 +26,7 @@ class Solution {
                k--;
             }
         }
+        // step 3 copy all the elements from transpose to matrix
             for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 matrix[i][j] = transpose[i][j] ;
