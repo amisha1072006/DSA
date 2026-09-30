@@ -1,27 +1,44 @@
 class Solution {
     public List<List<Integer>> generate(int numRows) {
-        List<List<Integer>> result = new ArrayList<>();
-        if(numRows==0) return result;
-        ArrayList<Integer> firstrow = new ArrayList<>();
-         firstrow.add(1);
-         result.add(firstrow);
-         if(numRows==1) return result;
 
-         for(int i=1;i<numRows;i++)
-         {
-            List<Integer> prerow = result.get(i-1);
-            
-            ArrayList<Integer> row =new ArrayList<>();
-            row.add(1);
-            for(int j=0;j<i-1;j++)
-            {
-                row.add(prerow.get(j)+prerow.get(j+1));
-            }
-            row.add(1);
-            result.add(row);
+        // BRUTE FORCE APPROACH
+    // TC = O(n*n*r) = O(n^3) 
+    
+    // List<List<Integer>> list1 = new ArrayList<>();
+    // for(int row = 1; row <= n; row++){
+    //     ArrayList<Integer> list2 = new ArrayList<>();
+    //     for(int col = 1; col <= row; col++){
+    //         list2.add(pascalTriangleI(row, col));
+    //     }
+    //     list1.add(list2);
+    // }
+    // return list1;
+    // }
+    // public static int pascalTriangleI(int r, int c){
+    //     int n = r-1;
+    //     int k = c-1;
+    //     long res = 1;
+    //     for(int i = 0; i < k; i++){
+    //         res = res *(n-i);
+    //         res = res / (i+1);
+    //     }
+    //     return (int)res;
 
-         }
-        return result;
-        
+    // OPTIMAL APPROACH
+    // TC = O(n * n), SC O(1)
+ int n  = numRows;
+    List<List<Integer>> ans = new ArrayList<>();
+    for(int i = 1; i<=n; i++){
+      List<Integer> ansRow = new ArrayList<>();
+      long res = 1;
+      ansRow.add((int)res);
+      for(int col = 1; col<i; col++){
+         res = res * (i-col);
+         res = res / (col); 
+         ansRow.add((int)res);
+      }
+      ans.add(ansRow);
+    }
+    return ans;
     }
 }
