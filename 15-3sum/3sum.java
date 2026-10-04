@@ -1,49 +1,53 @@
 class Solution {
     public List<List<Integer>> threeSum(int[] nums) {
-                List<List<Integer>> ans = new ArrayList<>();
+  
+    // BRUTE FORCE APPROACH
+    //TC = O(n^3 * log(no.of unique)), SC = 2*O(no. of triplets)
 
-        // Sort the array
-        Arrays.sort(nums);
+    //   int n = nums.length;
+    //   List<List<Integer>> ans = new ArrayList<>();
+    //   Set<List<Integer>> ans1 =  new HashSet<>();
+    //   for(int i = 0; i<n; i++){
+    //     for(int j = i+1; j<n; j++){
+    //         for(int k = j+1; k<n; k++){
+    //             if(i != j && i !=k && j != k){
+    //             if(nums[i]+nums[j]+nums[k] == 0){
+    //                 List<Integer> list = new ArrayList<>();
+    //                 list.add(nums[i]);
+    //                 list.add(nums[j]);
+    //                 list.add(nums[k]);
+    //                 Collections.sort(list);
+    //                 ans1.add(list);
+    //             }
+    //         }    
+    //         }
+    //     }
+    //   }
+    //   ans.addAll(ans1);
+    //   return ans;
 
-        for (int i = 0; i < nums.length - 2; i++) {
-            // Skip duplicate elements for i
-            if (i > 0 && nums[i] == nums[i - 1]) {
-                continue;
-            }
+    // BETTER APPROACH 
+    // TC = O(), SC = O()
 
-            int j = i + 1;
-            int k = nums.length - 1;
-
-            while (j < k) {
-                int sum = nums[i] + nums[j] + nums[k];
-
-                if (sum == 0) {
-                    // Found a triplet with zero sum
-                    ans.add(Arrays.asList(nums[i], nums[j], nums[k]));
-
-                    // Skip duplicate elements for j
-                    while (j < k && nums[j] == nums[j + 1]) {
-                        j++;
-                    }
-
-                    // Skip duplicate elements for k
-                    while (j < k && nums[k] == nums[k - 1]) {
-                        k--;
-                    }
-
-                    // Move the pointers
-                    j++;
-                    k--;
-                } else if (sum < 0) {
-                    // Sum is less than zero, increment j to increase the sum
-                    j++;
-                } else {
-                    // Sum is greater than zero, decrement k to decrease the sum
-                    k--;
-                }
-            }
-        }
-        return ans;
-   
+    int n = nums.length;
+    List<List<Integer>> ans = new ArrayList<>();
+    Set<List<Integer>> ans1 =  new HashSet<>();
+    for(int i = 0; i<n; i++){
+        Set<Integer> hashset = new HashSet<>();
+       for(int j = i+1; j<n; j++){
+           int third = -(nums[i] + nums[j]);
+           if(hashset.contains(third)){
+            List<Integer> list = new ArrayList<>();
+            list.add(nums[i]);
+            list.add(nums[j]);
+            list.add(third);
+            Collections.sort(list);
+            ans1.add(list);
+           }
+           hashset.add(nums[j]);
+       }
+    }
+    ans.addAll(ans1);
+    return ans;
     }
 }
