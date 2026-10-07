@@ -51,7 +51,7 @@ class Solution {
     // return ans;
 
     // OPTIMAL APPROACH
-    // TC = O(), SC = O()
+    // TC = O(nlogn) + O(n *n) = O(n^2), SC = O(no. of unique triplets)
  
    List<List<Integer>> ans = new ArrayList<>();
    Arrays.sort(nums);
