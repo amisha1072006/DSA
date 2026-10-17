@@ -3,7 +3,8 @@ class Solution {
         int i = 0;
         int j = 0;
         int k = 0;
-        int temp[] = new int[m+n];
+        int o = nums1.length;
+        int temp[] = new int[o];
         while(i<m && j<n){
           if(nums1[i] <= nums2[j]){
             temp[k++] = nums1[i];
@@ -23,7 +24,7 @@ class Solution {
               j++;
 
         }
-        for(int l = 0; l< m+n; l++){
+        for(int l = 0; l< o; l++){
             nums1[l] = temp[l];
         }
     }
