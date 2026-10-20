@@ -1,48 +1,52 @@
 class Solution {
-    public int reversePairs(int[] nums) {
-       return mergeSort(nums, 0, nums.length - 1);
-   }
-   
-   private static void merge(int[] nums, int low, int mid, int high) {
-       ArrayList<Integer> temp = new ArrayList<>();
-       int left = low;
-       int right = mid + 1;
-       
-       while (left <= mid && right <= high) {
-           if (nums[left] <= nums[right]) {
-               temp.add(nums[left++]);
-           } else {
-               temp.add(nums[right++]);
+    public int reversePairs(int[] arr) {
+             int n = arr.length;
+             return mergeSort(arr, 0, n-1);
+    }  
+    public static int mergeSort(int arr[], int si, int ei){
+            int cnt = 0;
+            if(si>= ei){
+                return cnt;
+            }
+            int mid = si + (ei-si)/2;
+            cnt += mergeSort(arr, si, mid);
+            cnt += mergeSort(arr, mid+1, ei);
+            cnt += reversePair(arr, si, mid, ei);
+            merge(arr, si, mid, ei);
+            return cnt;
+        }
+        public static void merge(int arr[], int si, int mid, int ei){
+            int temp[] = new int[ei-si+1];
+            int i = si;
+            int j = mid+1;
+            int k = 0;
+           while(i<= mid && j<= ei){
+            if(arr[i] <= arr[j]){
+                temp[k++] = arr[i++];
+            }
+            else{
+                temp[k++] = arr[j++];
+            }
            }
-       }
-       while (left <= mid) temp.add(nums[left++]);
-       while (right <= high) temp.add(nums[right++]);
-       
-       for (int i = low; i <= high; i++) {
-           nums[i] = temp.get(i - low);
-       }
-   }
-   
-   private static int CountPairs(int[] nums, int low, int mid, int high) {
-       int cnt = 0;
-       int right = mid + 1;
-       for (int i = low; i <= mid; i++) {
-           while (right <= high && (long) nums[i] > 2L * nums[right]) {
-               right++;
+           while(i<= mid){
+            temp[k++] = arr[i++];
            }
-           cnt += (right - (mid + 1));
-       }
-       return cnt;
-   }
-   
-   private static int mergeSort(int[] nums, int low, int high) {
-       if (low >= high) return 0;
-       int mid = (low + high) / 2;
-       int cnt = mergeSort(nums, low, mid);
-       cnt += mergeSort(nums, mid + 1, high);
-       cnt += CountPairs(nums, low, mid, high);
-       merge(nums, low, mid, high);
-       return cnt;
-    
-    }
+           while(j<= ei){
+             temp[k++] = arr[j++];
+           }
+           for(k = 0; k< temp.length; k++){
+            arr[si+k] = temp[k];
+           }
+           }
+        public static int reversePair(int[] arr, int si, int mid, int ei){
+            int cnt = 0;
+            int j = mid+1;
+            for(int i = si; i<=mid; i++){
+                while(j <= ei && (long) arr[i] > 2L * arr[j]){
+                    j++;
+                }
+                    cnt += (j- (mid + 1));
+            }
+            return cnt;
+        }
 }
