@@ -39,13 +39,27 @@ class Solution {
            }
            }
         public static int reversePair(int[] arr, int si, int mid, int ei){
+            // int cnt = 0;
+            // int j = mid+1;
+            // for(int i = si; i<=mid; i++){
+            //     while(j <= ei && (long) arr[i] > 2L * arr[j]){
+            //         j++;
+            //     }
+            //         cnt += (j- (mid + 1));
+            // }
+
+            // OR
+
             int cnt = 0;
+            int i = si;
             int j = mid+1;
-            for(int i = si; i<=mid; i++){
-                while(j <= ei && (long) arr[i] > 2L * arr[j]){
+            while(i <= mid && j <= ei){
+                if((long) arr[i] > 2L * arr[j]){
+                   cnt += mid - i + 1;
                     j++;
+                } else{
+                    i++;
                 }
-                    cnt += (j- (mid + 1));
             }
             return cnt;
         }
