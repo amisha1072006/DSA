@@ -62,28 +62,29 @@ class Solution {
            }
         //    O(n1+n2) = O(n)
         public static int reversePair(int[] arr, int si, int mid, int ei){
-            int cnt = 0;
-            int j = mid+1;
-            for(int i = si; i<=mid; i++){
-                while(j <= ei && arr[i] > 2L * arr[j]){
-                    j++;
-                }
-                    cnt += (j- (mid + 1));
-            }
+            // int cnt = 0;
+            // int j = mid+1;
+            // for(int i = si; i<=mid; i++){
+            //     while(j <= ei && arr[i] > 2L * arr[j]){
+            //         j++;
+            //     }
+            //         cnt += (j- (mid + 1));
+            // }
 
             // OR
+            // TC = O(n)
 
-            // int cnt = 0;
-            // int i = si;
-            // int j = mid+1;
-            // while(i <= mid && j <= ei){
-            //     if((long) arr[i] > 2L * arr[j]){
-            //        cnt += mid - i + 1;
-            //         j++;
-            //     } else{
-            //         i++;
-            //     }
-            // }
+            int cnt = 0;
+            int i = si;
+            int j = mid+1;
+            while(i <= mid && j <= ei){
+                if((long) arr[i] > 2L * arr[j]){
+                   cnt += mid - i + 1;
+                    j++;
+                } else{
+                    i++;
+                }
+            }
             return cnt;
         }
 }
