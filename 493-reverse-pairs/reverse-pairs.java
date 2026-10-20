@@ -65,7 +65,7 @@ class Solution {
             int cnt = 0;
             int j = mid+1;
             for(int i = si; i<=mid; i++){
-                while(j <= ei && (long) arr[i] > 2L * arr[j]){
+                while(j <= ei && arr[i] > 2L * arr[j]){
                     j++;
                 }
                     cnt += (j- (mid + 1));
