@@ -63,25 +63,48 @@ class Solution {
       // BETTER APPROACH
       // TC = O(nlogn), SC = O(1)
 
-      Arrays.sort(nums);
-      int n = nums.length;
-        if(n == 0){
-            return 0;
+    //   Arrays.sort(nums);
+    //   int n = nums.length;
+    //     if(n == 0){
+    //         return 0;
+    //     }
+    //     int cnt = 1;
+    //     int longest = 1;
+    //     for(int i = 1; i<n; i++){
+    //         if(nums[i] == nums[i-1]){
+    //             continue;
+    //         }
+    //         else if(nums[i] == nums[i-1] +1){
+    //           cnt++;
+    //         }
+    //         else{
+    //             cnt = 1;
+    //         }
+    //         longest = Math.max(longest, cnt);
+    //     }
+    //     return longest;
+    //    }
+    // }
+
+    // OPTIMIZED APPROACH
+    // TC = O(n) in average case but in worst case it can be O(n^2) or if we will used TreeSet then TC = O(nlogn) in best, average and worst case, then in those cases brute and better solution will be optimal solution, SC = O(n)
+
+  Set<Integer> set = new HashSet<>();
+  for(int num: nums){
+    set.add(num);
+  }
+  int longest = 0;
+  for(int num: set){
+    if(!set.contains(num-1)){
+        int current = num;
+        int length = 1;
+        while(set.contains(current + 1)){
+            current++;
+            length++;
         }
-        int cnt = 1;
-        int longest = 1;
-        for(int i = 1; i<n; i++){
-            if(nums[i] == nums[i-1]){
-                continue;
-            }
-            else if(nums[i] == nums[i-1] +1){
-              cnt++;
-            }
-            else{
-                cnt = 1;
-            }
-            longest = Math.max(longest, cnt);
-        }
-        return longest;
-       }
+        longest = Math.max(longest, length);
     }
+  }
+  return longest;
+    }
+}
