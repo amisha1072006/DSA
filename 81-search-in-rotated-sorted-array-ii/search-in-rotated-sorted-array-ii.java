@@ -7,7 +7,7 @@ class Solution {
         if(nums[mid] == target){
             return true;
         }
-        if(nums[lo] == nums[mid] && nums[mid] == nums[hi]){
+        else if(nums[lo] == nums[mid] && nums[mid] == nums[hi]){
             lo++;
             hi--;
             continue;
