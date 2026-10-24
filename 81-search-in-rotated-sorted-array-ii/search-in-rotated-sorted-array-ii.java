@@ -1,41 +1,40 @@
 class Solution {
     public boolean search(int[] nums, int target) {
-                int l = 0;
-        int h = nums.length-1;
-        while(l<=h)
-        {
-            int mid = (h+l)/2;
-            if(nums[mid]==target) return true;
-            if(nums[l]==nums[mid] && nums[mid]==nums[h])
-            {
-                l++;
-                h--;
-                continue;
+        int n = nums.length;
+       int lo = 0, hi = nums.length - 1;
+       while(lo <= hi){
+        int mid = lo + (hi-lo)/2;
+        if(nums[mid] == target){
+            return true;
+        }
+        if(nums[lo] == nums[mid] && nums[mid] == nums[hi]){
+            lo++;
+            hi--;
+            continue;
+        }
+        // left half is sorted
+        else if(nums[lo] <= nums[mid]){
+            //target lies in left half
+            if(nums[lo] <= target && target <= nums[mid]){
+                hi = mid-1;
             }
-            if(nums[l]<=nums[mid])
-            {
-                if(nums[l]<=target && nums[mid]>=target)
-                {
-                    h=mid-1;
-                }
-                else
-                {
-                    l=mid+1;
-                }
-            }
-            else
-            {
-                if(nums[mid]<=target && nums[h]>=target)
-                {
-                    l=mid+1;
-                }
-                else
-                {
-                    h=mid-1;
-                }
+            // target lies in right half
+            else{
+                lo = mid+1;
             }
         }
-        return false;
-
+        // right half is sorted
+        else{
+            // target lies in right half 
+            if(nums[mid] <= target && target <= nums[hi]){
+                lo = mid +1;
+            }
+            // target lies in left half
+            else{
+                hi = mid -1;
+            }
+        }
+       }
+       return false;
     }
 }
