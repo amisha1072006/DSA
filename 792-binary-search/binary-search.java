@@ -1,5 +1,6 @@
 class Solution {
     public int search(int[] nums, int target) {
+        // TC = O(logn), SC = O(1)
         int st = 0; 
         int end = nums.length-1;
         while(st <= end){
