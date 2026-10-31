@@ -35,14 +35,14 @@ class Solution {
             int mid = left + (right - left)/2;
             int result = func(mid, nums);
             if(result <= threshold){
-                 ans = mid;
+                // ans = mid;
                  right = mid - 1;
             }
             else{
                 left = mid + 1;
             }
         }
-        return ans;
+        return left;
     }
     public static int func(int mid, int[] nums){
         int divisionsResult = 0;
