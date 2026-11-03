@@ -1,5 +1,9 @@
 class Solution {
     public int shipWithinDays(int[] weights, int days) {
+
+        // BRUTE FORCE APPROACH
+        // TC = O((sum - maxElement + 1) * n), SC = O(1)
+
 //         int n = weights.length;
 //         int maxElement = weights[0];
 //         int sum = weights[0];
@@ -34,6 +38,9 @@ class Solution {
 //     }
 // }
 
+// OPTIMAL APPROACH
+// TC = O(log(sum - maxElement + 1) * n), SC = O(1)
+
 int n = weights.length;
         int maxElement = weights[0];
         int sum = weights[0];
@@ -50,15 +57,12 @@ int n = weights.length;
             int mid = left + (right - left)/2;
             int daysReq = func(weights, mid);
             if(daysReq <= days){
-                ans = mid;
+                // ans = mid;
                 right = mid - 1;
             }
-            // else if(daysReq < days){
-            //     right = mid - 1;
-            // }
             else left = mid + 1;
         }
-       return ans; 
+       return left; 
     }
     public static int func(int[] weights, int cap){
         int sum = 0;
