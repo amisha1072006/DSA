@@ -51,14 +51,14 @@ int n = nums.length;
         while(left <= right){
             int mid = left + (right - left)/2;
             if(func(nums, mid, k) == true){
-                ans =  mid;
+                // ans =  mid;
                 right = mid - 1;
             }
             else{
                 left = mid + 1;
             }
         }  
-        return ans;
+        return left;
     }
     public static boolean func(int[] nums, int minLargestSum, int k){
         int sum = 0;
