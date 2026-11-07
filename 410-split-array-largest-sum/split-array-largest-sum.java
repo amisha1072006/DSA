@@ -1,5 +1,9 @@
 class Solution {
     public int splitArray(int[] nums, int k) {
+ 
+     // BRUTE FORCE APPROACH
+    // TC = O((sum - maxElement + 1) * n), SC = O(1)
+
 //         int n = nums.length;
 //         int maxElement = nums[0];
 //         int sum = nums[0];
@@ -36,7 +40,10 @@ class Solution {
 //     }
 // }
 
-int n = nums.length;
+   // OPTIMAL APPROACH
+   // TC = O(log(sum - maxElement + 1) * n), SC = O(1)
+
+        int n = nums.length;
         int maxElement = nums[0];
         int sum = nums[0];
         for(int i = 1; i<n; i++){
