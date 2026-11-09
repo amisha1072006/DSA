@@ -17,32 +17,52 @@ class Solution {
       // BETTER APPROACH
       // TC = O(n * logm), SC = O(1)
 
+//         int n = matrix.length;
+//         int m = matrix[0].length;
+//         for(int i = 0; i<n; i++){
+//             int idx =  binaryFunc(matrix[i], target);
+//             if(idx != -1){
+//                 return true;
+//             }
+//         }
+//         return false;
+//     }
+//     public static int binaryFunc(int[] matrix, int target){
+//         int n = matrix.length;
+//         int left = 0;
+//         int right = n-1;
+//         while(left <= right){
+//             int mid = (left + right) / 2;
+//             if(matrix[mid] == target){
+//                 return mid;
+//             }
+//             else if(matrix[mid] < target){
+//                 left = mid + 1;
+//             }
+//             else{
+//                 right = mid - 1;
+//             }
+//         }
+//         return -1;
+//     }
+// }
+
+        // OPTMISED APPROACH
+        // TC = O(n + m), SC = O(1)
+
         int n = matrix.length;
         int m = matrix[0].length;
-        for(int i = 0; i<n; i++){
-            int idx =  binaryFunc(matrix[i], target);
-            if(idx != -1){
+        int left = 0;
+        int right = m-1;
+        while(left <= n-1 && right >= 0){
+            if(matrix[left][right] == target){
                 return true;
+            }else if(matrix[left][right] < target){
+                left++;
+            }else{
+                right--;
             }
         }
         return false;
-    }
-    public static int binaryFunc(int[] matrix, int target){
-        int n = matrix.length;
-        int left = 0;
-        int right = n-1;
-        while(left <= right){
-            int mid = (left + right) / 2;
-            if(matrix[mid] == target){
-                return mid;
-            }
-            else if(matrix[mid] < target){
-                left = mid + 1;
-            }
-            else{
-                right = mid - 1;
-            }
-        }
-        return -1;
     }
 }
