@@ -2,7 +2,7 @@ class Solution {
     public boolean isIsomorphic(String s, String t) {
         
         // BRUTE FORCE APPROACH
-        // TC = O(n) in best, average and worst also because here keys are Character and valid ASCII characters are 256 only so bucket size cannot increase beyond constant (max 256) so, practically in worst case time complexity will be O(n), SC = O(2n)
+        // TC = O(n) in best, average and worst also because here keys are Character and valid ASCII characters are 256 only so bucket size cannot increase beyond constant (max 256) so, practically in worst case time complexity will be O(n), SC = O(1), since map size is fixed to 128 ASCII characters
 
 //         HashMap<Character,Character> sToTMap = new HashMap<>();
 //         HashMap<Character,Character> tToSMap = new HashMap<>();
@@ -25,7 +25,7 @@ class Solution {
 // }
 
 // OPTIMAL APPROACH
-// TC = O(3n), SC = O(4n)
+// TC = O(3n) = O(n), SC = O(1), since arr size is fixed to 128 ASCII characters
 
 int n = s.length();
 int[] sToTMap = new int[128];
