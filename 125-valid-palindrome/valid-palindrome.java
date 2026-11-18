@@ -1,5 +1,9 @@
 class Solution {
     public boolean isPalindrome(String s) {
+
+        // OPTIMAL APPROACH
+        // TC = O(n), SC = O(1)
+
         int n = s.length();
         int i = 0;
         int j = n-1;
