@@ -16,18 +16,36 @@ class Solution {
 //     }
 // }
 
+// OR USING RECURSION
+// TC = O(n), SC = O(n)
+
+        int n = s.length;
+        reverseStr(s, 0, n-1);
+    }
+    public static void reverseStr(char[] s, int left, int right){
+         if(left >= right){
+            return;
+        }
+        // swap
+        char temp = s[left];
+        s[left] = s[right];
+        s[right] = temp;
+        
+        reverseStr(s, left+1, right-1);
+    }
+}
        // OPTIMAL APPROACH
        // TC = O(n), SC = O(1)
 
-        int n = s.length;
-        int i = 0;
-        int j = n-1;
-        while(i < j){
-        char temp = s[i];
-        s[i] = s[j];
-        s[j] = temp;
-            i++;
-            j--;
-        }
-    }
-}
+    //     int n = s.length;
+    //     int i = 0;
+    //     int j = n-1;
+    //     while(i < j){
+    //     char temp = s[i];
+    //     s[i] = s[j];
+    //     s[j] = temp;
+    //         i++;
+    //         j--;
+    //     }
+    // }
+//}
